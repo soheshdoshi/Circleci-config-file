@@ -1,0 +1,41 @@
+version: 2
+ jobs: #run is comprised of one or more named jobs
+  build:
+   docker/machine/macos: #(executor)
+   environment:#variable names
+   parallelism: 3#each run jobs in parallelism
+   branches:    #rules for whitelisting/blacklisting execution of some branches 
+    only:   #whitelisting
+    ignore: #blacklisting
+   resource_class:#by default medium
+   steps:
+    - run: #command to excute as a string value
+    - checkout: #checkout source code to direct configure path
+   setup_remote_docker:
+   save_cache: #store cache of file (paths,key,when)
+   restore_cache: #restore cache of file 
+   deploy:  #deploying artifacts
+   store_artifacts:#store logs & binaries (path,destination)
+   store_test_results:#test summary 
+   persist_to_workspace:
+   attach_workspace:# The full contents of the workspace are downloaded and copied into the directory the workspace is being attached at.
+   add_ssh_keys:
+ workflows:
+  version: 2
+  niggy:#workflow named
+  triggers:
+         - schedule:
+           cron: "0 0 * * *"
+           filters:
+             branches:
+               only:
+                 - master
+                 - beta
+ jobs:
+  jobs_name:
+  requires:#run paralle 
+  context:#global environment variable
+  filters:
+
+
+    
